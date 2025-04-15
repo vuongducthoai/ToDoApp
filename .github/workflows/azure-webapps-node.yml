@@ -1,0 +1,20 @@
+name: CI for Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Add example.txt
+        run: |
+          echo "This is a simple text file." > example.txt
+          git add example.txt
+          git commit -m "Add example.txt"
+          git push origin HEAD:main
